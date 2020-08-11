@@ -120,7 +120,13 @@ float_exp       ::=  "e"
                      | "E-"
 plain_string    ::=  plain_char plain_string
                      | plain_char
-plain_char      ::=  <any ascii character, excluding syntax characters: , = ( ) [ ] " ' \r \n>
+plain_char      ::=  <any character, excluding syntax characters: , = ( ) [ ] " ' \r \n>
+string          ::=  '"' string_chars '"'
+                     | "'" string_chars "'"
+string_chars    ::=  string_char string_chars
+                     | string_char
+                     | "\" <any character>
+string_chars    ::=  <any character, excluding "\" and the quote character used to delineate the string>
 ```
 
 Expressions consist of variables names, and literal values such as booleans, numbers, identifiers, strings, and lists.
@@ -128,6 +134,9 @@ Plain strings are string literals not surrounded by quotes or any other delineat
 delineation, they cannot contain certain syntax-specific characters, which would obfuscate parsing. For example, if a 
 plain string were to contain a comma, the parser would not be able to determine whether that comma is part of the 
 string, or whether it signifies the delineation between command arguments.
+
+Quoted strings a delineated by either single or double quotes, and contain any character except the backslash `\` or
+quote used to delineate the string OR an escape sequence consisting of a backslach `\` followed by any character.
 
 ## Lists
 
