@@ -74,7 +74,7 @@ begin with a digit. They are used as names for variables and commands.
 ```
 arguments       ::=  "(" argument_list ")"
                      | "(" ")"
-argument_list   ::=  argument "," arguments
+argument_list   ::=  argument "," argument_list
                      | argument ","
                      | argument
 argument        ::=  identifier "=" expression
