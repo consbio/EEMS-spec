@@ -120,13 +120,13 @@ float_exp       ::=  "e"
                      | "E-"
 plain_string    ::=  plain_char plain_string
                      | plain_char
-plain_char      ::=  <any character, excluding syntax characters: , = ( ) [ ] " ' \r \n>
+plain_char      ::=  <any character, excluding syntax characters: , = - + ( ) [ ] " ' \r \n>
 string          ::=  '"' string_chars '"'
                      | "'" string_chars "'"
 string_chars    ::=  string_char string_chars
                      | string_char
+string_char     ::=  <any character, excluding "\" and the quote character used to delineate the string>
                      | "\" <any character>
-string_chars    ::=  <any character, excluding "\" and the quote character used to delineate the string>
 ```
 
 Expressions consist of variables names, and literal values such as booleans, numbers, identifiers, strings, and lists.
