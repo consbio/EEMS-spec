@@ -53,13 +53,13 @@ pecies_endemic_and_listed_fz = CvtToFuzzy(
 
 ```
 identifier      ::=  id_start
-                    | id_start id_continue
+                     | id_start id_continue
 id_start        ::=  letter | "_"
 id_continue     ::=  letter id_continue
-                    | digit id_continue
-                    | letter
-                    | digit
-                    | "_"
+                     | digit id_continue
+                     | letter
+                     | digit
+                     | "_"
 letter          ::=  upper_letters | lower_letters
 upper_letters   ::=  "A" | ... | "Z"
 lower_letters   ::=  "a" | ... | "z"
