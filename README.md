@@ -94,10 +94,12 @@ Weights = [1, 2, 3, 4]
 
 ```
 expression      ::=  identifier
+                     | string
                      | plain_string
                      | identifier expression
                      | number
                      | list
+                     | tuple
                      | boolean
 boolean         ::=  "True" | "False"
 number          ::=  integer 
@@ -156,3 +158,24 @@ Lists contain 0 or more expressions. Trailing commas are allowed, so the followi
 
 [1, 2,]
 ```
+
+## Tuples
+
+```
+tuple       := "[" tuple_pairs "]"
+               | "[" "]"
+tuple_pairs := tuple_pair "," tuple_pairs
+               | tuple_pair
+               | tuple_pair ","
+tuple_pair  := tuple_part ":" tuple_part
+tuple_part  := string | plain_string
+```
+
+Tuples consist of 0 or more key/value pairs, enclosed in `[` brackets `]` and with pairs separated by commas. Both the key
+and value parts are strings or plain strings.
+
+```
+[DisplayName: Agricultural density, Description: This is the ag density layer, ColorMap: binary]
+
+["DisplayName": "Agricultural density", Description: "This is the ag density layer", ColorMap: "binary"]
+``` 
