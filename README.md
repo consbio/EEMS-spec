@@ -163,16 +163,21 @@ Lists contain 0 or more expressions. Trailing commas are allowed, so the followi
 
 ```
 tuple       := "[" tuple_pairs "]"
-               | "[" "]"
 tuple_pairs := tuple_pair "," tuple_pairs
                | tuple_pair
                | tuple_pair ","
 tuple_pair  := tuple_part ":" tuple_part
-tuple_part  := string | plain_string
+tuple_part  := string 
+            | plain_string 
+            | identifier
+            | identifier tuple_part
+
 ```
 
-Tuples consist of 0 or more key/value pairs, enclosed in `[` brackets `]` and with pairs separated by commas. Both the key
-and value parts are strings or plain strings.
+Tuples consist of 0 or more key/value pairs, enclosed in `[` brackets `]` and with pairs separated by commas. Both the 
+key and value parts are strings or plain strings. Note that there is no rule for an empty tuple. This is because an 
+empty tuple is indistinguishable from an empty list. Therefore `[]` parses as an empty list. Because of this, parameter
+validation should consider an empty list as a valid value for a tuple parameter.
 
 ```
 [DisplayName: Agricultural density, Description: This is the ag density layer, ColorMap: binary]
